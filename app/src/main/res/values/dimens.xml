@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_margin_min">8dp</dimen>
+    <dimen name="common_text_middle">18sp</dimen>
+    <dimen name="common_card_radius">15dp</dimen>
+    <dimen name="card_elevation_min">1dp</dimen>
+    <dimen name="card_margin_min">4dp</dimen>
+    <dimen name="common_text_max">20sp</dimen>
+</resources>
