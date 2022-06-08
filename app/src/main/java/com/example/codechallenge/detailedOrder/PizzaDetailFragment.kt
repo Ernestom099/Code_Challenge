@@ -1,14 +1,13 @@
-package com.example.codechallenge
+package com.example.codechallenge.detailedOrder
 
-import android.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import com.example.codechallenge.common.entities.OrderEntitiy
 import com.example.codechallenge.databinding.FragmentOrderDetailBinding
+import java.text.DecimalFormat
 
 class PizzaDetailFragment : Fragment() {
 
@@ -29,7 +28,7 @@ class PizzaDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
 
         mBinding = FragmentOrderDetailBinding.inflate(layoutInflater)
 
@@ -39,14 +38,16 @@ class PizzaDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         order?.let {
-
             with(it) {
                 mBinding.txtType.text = type
-                mBinding.txtName.text = name
+                mBinding.txtSize.text = size
 
                 toppings?.let {
                     mBinding.txtToppings.visibility = View.VISIBLE
                     mBinding.lstToppings.visibility = View.VISIBLE
+
+                    mBinding.txtPrice.text =   "$${DecimalFormat("0.00").format(calculateDollarsPrice())}"
+                    mBinding.txtEuroPrice.text =   "€${DecimalFormat("0.00").format(calculatePrice())}"
                     for (topping in toppings) {
                         mBinding.lstToppings.text =
                             mBinding.lstToppings.text.toString().plus("*${topping}\n")
@@ -61,10 +62,6 @@ class PizzaDetailFragment : Fragment() {
                             mBinding.lstSauce.text.toString().plus("*${sauce}\n")
                     }
                 }
-
-
-
-                mBinding.price.text = "$${order?.calculatePizzaPrice()}"
             }
         }
     }

@@ -12,6 +12,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OrdersViewModel : ViewModel() {
+    private val price: MutableLiveData<Double> by lazy {
+        MutableLiveData<Double>()
+    }
 
     private val orders: MutableLiveData<List<OrderEntitiy>> by lazy {
         MutableLiveData<List<OrderEntitiy>>().also {
@@ -21,13 +24,13 @@ class OrdersViewModel : ViewModel() {
     private val ordersInteractor: OrdersInteractor by lazy { OrdersInteractor() }
 
 
-    fun getOrders(): LiveData<List<OrderEntitiy>> {
-        return orders
-    }
+    fun getOrders(): LiveData<List<OrderEntitiy>> = orders
+    fun getPrice(): LiveData<Double> = price
 
     fun loadOrders() {
         ordersInteractor.getOrders {
-            orders.value = it
+            orders.postValue( it)
+            price.postValue(it.sumOf { it.calculatePrice() })
         }
     }
 }

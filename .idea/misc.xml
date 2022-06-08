@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/Code_Challenge/app/src/main/res/layout/fragment_bread_order_detail.xml" value="0.16077898550724637" />
+        <entry key="..\:/Documentos/Code_Challenge/app/src/main/res/layout/fragment_order_detail.xml" value="0.3052536231884058" />
+        <entry key="..\:/Documentos/Code_Challenge/app/src/main/res/layout/fragment_orders.xml" value="0.18802083333333333" />
+        <entry key="..\:/Documentos/Code_Challenge/app/src/main/res/layout/fragment_salad_order_detail.xml" value="0.3052536231884058" />
+        <entry key="..\:/Documentos/Code_Challenge/app/src/main/res/layout/fragment_sausage_order_detail.xml" value="0.3052536231884058" />
+        <entry key="..\:/Documentos/Code_Challenge/app/src/main/res/layout/item_order.xml" value="0.3052536231884058" />
         <entry key="..\:/Users/luis.b.munoz/AndroidStudioProjects/CodeChallenge/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/luis.b.munoz/AndroidStudioProjects/CodeChallenge/app/src/main/res/layout/fragment_order_detail.xml" value="0.25" />
         <entry key="..\:/Users/luis.b.munoz/AndroidStudioProjects/CodeChallenge/app/src/main/res/layout/fragment_orders.xml" value="0.17753623188405798" />
@@ -11,7 +17,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -13,50 +13,38 @@
         android:orientation="vertical">
 
         <TextView
-
             android:id="@+id/txt_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_margin_min"
             android:textAlignment="center"
+            
             android:textSize="@dimen/common_text_max"
             android:textStyle="bold"
             tools:text="Pizza" />
 
 
         <TextView
-
-            android:id="@+id/txt_name"
+            android:id="@+id/txt_shape"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_margin_min"
             android:textAlignment="center"
+
             android:textSize="@dimen/common_text_middle"
             android:textStyle="bold"
             tools:text="Big" />
 
-
         <TextView
-
-            android:id="@+id/txt_ingredients"
+            android:id="@+id/txt_grain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_margin_min"
-            android:text="@string/toppings"
+            android:textAlignment="center"
+
             android:textSize="@dimen/common_text_middle"
             android:textStyle="bold"
-            android:visibility="gone" />
-
-        <TextView
-
-            android:id="@+id/lst_ingredients"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_margin_min"
-            android:clickable="false"
-            android:focusable="false"
-            android:visibility="gone" />
-
+            tools:text="Big" />
 
 
         <View

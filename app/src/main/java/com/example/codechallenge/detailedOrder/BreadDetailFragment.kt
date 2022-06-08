@@ -1,22 +1,20 @@
-package com.example.codechallenge
+package com.example.codechallenge.detailedOrder
 
-import android.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import com.example.codechallenge.common.entities.OrderEntitiy
-import com.example.codechallenge.databinding.FragmentOrderDetailBinding
-import com.example.codechallenge.databinding.FragmentSaladOrderDetailBinding
+import com.example.codechallenge.databinding.FragmentBreadOrderDetailBinding
+import java.text.DecimalFormat
 
-class SaladDetailFragment : Fragment() {
+class BreadDetailFragment : Fragment() {
 
 
     private var order: OrderEntitiy? = null
 
-    private lateinit var mBinding: FragmentSaladOrderDetailBinding
+    private lateinit var mBinding: FragmentBreadOrderDetailBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +28,9 @@ class SaladDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        mBinding = FragmentSaladOrderDetailBinding.inflate(layoutInflater)
+        mBinding = FragmentBreadOrderDetailBinding.inflate(layoutInflater)
 
         return mBinding.root
     }
@@ -43,21 +41,11 @@ class SaladDetailFragment : Fragment() {
 
             with(it) {
                 mBinding.txtType.text = type
-                mBinding.txtName.text = name
+                mBinding.txtShape.text = shape
+                mBinding.txtGrain.text = grain
 
-                ingredients?.let {
-                    mBinding.txtIngredients.visibility = View.VISIBLE
-                    mBinding.lstIngredients.visibility = View.VISIBLE
-                    for (topping in ingredients) {
-                        mBinding.lstIngredients.text =
-                            mBinding.lstIngredients.text.toString().plus("*${topping}\n")
-                    }
-                }
-
-
-
-
-                mBinding.price.text = "$${order?.calculateSaladPrice()}"
+                mBinding.txtPrice.text =   "$${DecimalFormat("0.00").format(calculateDollarsPrice())}"
+                mBinding.txtEuroPrice.text =   "€${DecimalFormat("0.00").format(calculatePrice())}"
             }
         }
     }

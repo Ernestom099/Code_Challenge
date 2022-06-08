@@ -1,5 +1,6 @@
 package com.example.codechallenge.common.entities
 
+import com.example.codechallenge.common.utis.EuroPrice
 import java.io.Serializable
 
 
@@ -13,10 +14,39 @@ data class OrderEntitiy(
     val shape: String?,
     val grain: String?,
     val meat: String?,
-    val length: Long?
+    val length: Int?
 ) : Serializable {
 
-    fun calculatePizzaPrice(): Double {
+    fun calculatePrice(): Double {
+        val price = when (type) {
+            TYPE_PIZZA -> {
+                calculatePizzaPrice()
+            }
+            TYPE_SALAD -> {
+                calculateSaladPrice()
+            }
+            TYPE_BREAD -> {
+                calculateBreadPrice()
+            }
+            else -> {
+                calculateSausagePrice()
+            }
+        }
+
+        EuroPrice.invoke()?.let {
+            return it.toDollars(price)
+        }
+        return  0.0
+    }
+
+    fun calculateDollarsPrice(): Double {
+        EuroPrice.invoke()?.let {
+            return it.toDollars(calculatePrice())
+        }
+        return  calculatePrice()
+    }
+
+    private fun calculatePizzaPrice(): Double {
         var price = 0.0
         when (size) {
             PIZZA_BIG_SIZE -> {
@@ -33,29 +63,35 @@ data class OrderEntitiy(
 
         price = price.plus((toppings?.size ?: 0.0).toDouble() * TOPPING_PRICE)
         price = price.plus((sauce?.size ?: 0.0).toDouble() * SAUCE_PRICE)
-
-
-
-
-
         return price
     }
 
 
-    fun calculateSaladPrice(): Double {
+    private fun calculateSaladPrice(): Double {
         var price = 0.0
-
         ingredients?.let {
             price = price.plus(2)
             price = price.plus((ingredients.size - 2) * 0.5)
 
         }
-
-
         return price
     }
 
+    private fun calculateSausagePrice(): Double =
+        if (length == SMALL_SAUSAGE_LENGTH) SMALL_SAUSAGE_PRICE else LONG_SAUSAGE_PRICE
+
+    private fun calculateBreadPrice(): Double = BREAD_PRICE
+
+
     companion object {
+
+        const val SMALL_SAUSAGE_PRICE = 1.5
+        const val LONG_SAUSAGE_PRICE = 3.0
+
+        const val BREAD_PRICE = 3.0
+
+        const val SMALL_SAUSAGE_LENGTH = 5
+
         const val PIZZA_SMALL_PRICE = 5.0
         const val PIZZA_MEDIUM_PRICE = 10.0
         const val PIZZA_BIG_PRICE = 15.0
@@ -69,5 +105,6 @@ data class OrderEntitiy(
 
         const val TYPE_PIZZA = "pizza"
         const val TYPE_SALAD = "salad"
+        const val TYPE_BREAD = "bread"
     }
 }

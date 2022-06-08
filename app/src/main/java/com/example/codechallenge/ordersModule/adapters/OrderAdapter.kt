@@ -9,6 +9,7 @@ import com.example.codechallenge.ordersModule.OnClickListener
 import com.example.codechallenge.R
 import com.example.codechallenge.common.entities.OrderEntitiy
 import com.example.codechallenge.databinding.ItemOrderBinding
+import java.text.DecimalFormat
 
 class OrderAdapter(private var orders: List<OrderEntitiy>, private var listener: OnClickListener) :
     RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
@@ -22,7 +23,9 @@ class OrderAdapter(private var orders: List<OrderEntitiy>, private var listener:
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = orders.get(position)
         with(holder) {
-            binding.txtOrderType.setText(order.type)
+            binding.txtOrderType.text = order.type
+            binding.txtOrderPrice.text = "$${ DecimalFormat("0.00").format(order.calculateDollarsPrice())}"
+            binding.txtOrderEuroPrice.text = "€${ DecimalFormat("0.00").format(order.calculatePrice())}"
             setListener(order)
         }
 
