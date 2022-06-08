@@ -9,7 +9,7 @@ class MainViewModel : ViewModel() {
 
     private val euroPrice: MutableLiveData<EuroPrice> by lazy {
         MutableLiveData<EuroPrice>().also {
-            loadOrders()
+            loadEuroPrice()
         }
     }
 
@@ -20,7 +20,7 @@ class MainViewModel : ViewModel() {
     fun getEuroPrices(): MutableLiveData<EuroPrice> = euroPrice
 
 
-    fun loadOrders() {
+    fun loadEuroPrice() {
         mainInteractor.getEuroPrice {
             with(it) {
                 euroPrice.postValue(EuroPrice.invoke(USD, GBP, AUD))
